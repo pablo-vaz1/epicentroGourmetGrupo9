@@ -4,7 +4,7 @@
         
         <!-- ID de la clase padre -->
         <id column="idEmpleado" name="idEmpleado" type="long">
-            
+        <generator class="identity" />
         </id>
         
         <!-- Atributos comunes de Empleado -->
