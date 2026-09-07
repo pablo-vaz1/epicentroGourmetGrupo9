@@ -10,9 +10,8 @@ public class Pedido {
 	private Set<Item> items;
 	public Pedido() {
 	}
-	public Pedido(long idPedido, LocalDate fecha, UnidadVenta unidadVenta, Set<Item> items) {
+	public Pedido( LocalDate fecha, UnidadVenta unidadVenta, Set<Item> items) {
 		super();
-		this.idPedido = idPedido;
 		this.fecha = fecha;
 		this.unidadVenta = unidadVenta;
 		this.items = items;

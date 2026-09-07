@@ -4,7 +4,7 @@
         
         <!-- ID de Item -->
         <id column="idItem" name="idItem" type="int">
-            
+        <generator class="identity" />
         </id>
         
         <!-- Atributos comunes -->

@@ -28,16 +28,16 @@ public class EmpleadoABM {
 	}
 	public void modificarCajero(long idEmpleado,int dniN, String nombreN, String apellidoN, LocalDate fechaNacimientoN,
 			LocalDate fechaIngresoN, float sueldoN, boolean esEncargadoN, int puestoDondeTrabajaN,String turnoN)throws Exception{
-	    Empleado EmpleadoParaModificar=dao.traer(idEmpleado);
-		if(EmpleadoParaModificar == null) {
+	    Empleado empleadoParaModificar=dao.traer(idEmpleado);
+		if(empleadoParaModificar == null) {
 			throw new Exception("este empleado no existe");
 		}
 		
 		
-		if(!(EmpleadoParaModificar instanceof Cajero)) {
+		if(!(empleadoParaModificar instanceof Cajero)) {
 			throw new Exception("Este empleado no es cajero");
 		}
-			Cajero c = (Cajero)EmpleadoParaModificar;
+			Cajero c = (Cajero)empleadoParaModificar;
 			c.setDni(dniN);
 		    c.setNombre(nombreN);
 		    c.setApellido(apellidoN);

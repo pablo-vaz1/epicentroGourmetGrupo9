@@ -1,12 +1,13 @@
 package datos;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class UnidadVenta {
 	private long idUnidadVenta;
 	private String nombre;
 	private Double superficie;
-	private Set<Empleado> empleados;
+	private Set<Empleado> empleados = new HashSet();
 	
 	
 	public UnidadVenta() {
