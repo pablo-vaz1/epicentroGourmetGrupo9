@@ -22,10 +22,17 @@ public class UnidadVentaABM {
 	PuestoDesmontable uv = new PuestoDesmontable(nombre, superficie, empleados,cantidadCarpas,tiempoInstalacion);
 	return dao.agregar(uv);
 	}
+	
 	public void modificar(PuestoDesmontable uv){
 	
 	dao.actualizar(uv);
 	}
+	
+	public void modificarUnidadVenta(UnidadVenta uv){
+		
+	  dao.actualizar(uv);
+	}
+	
 	public void modificarPuestoDesmontable(long idUnidadVenta, String nombreNuevo, Double superficieNuevo, Set<Empleado> empleadosNuevo,int cantidadCarpasNuevo,int tiempoInstalacionNuevo)throws Exception{
 	    UnidadVenta UnidadVentaParaModificar=dao.traer(idUnidadVenta);
 		if(UnidadVentaParaModificar == null) {

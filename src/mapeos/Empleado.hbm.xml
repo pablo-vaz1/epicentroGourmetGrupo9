@@ -15,7 +15,6 @@
         <property column="fechaIngreso" name="fechaIngreso" type="java.time.LocalDate" />
         <property column="sueldo" name="sueldo" type="float" />
         <property column="esEncargado" name="esEncargado" type="boolean" />
-        <property column="puestoDondeTrabaja" name="puestoDondeTrabaja" type="int" />
         
         <!-- Mapeo de la subclase Cajero -->
         <joined-subclass name="datos.Cajero" table="cajero">

@@ -35,7 +35,7 @@ public class TestPedido {
             cajero.setNombre("toto");
             session.persist(cajero);
             EmpleadoABM empleadoAbm= new EmpleadoABM();
-            empleadoAbm.agregarCajero(28000000, "pablo", "vazquez",LocalDate.of(1981,4,4),LocalDate.of(2015,6,6),80000f, false, 1, "noche");
+            empleadoAbm.agregarCajero(28000000, "pablo", "vazquez",LocalDate.of(1981,4,4),LocalDate.of(2015,6,6),80000f, false, "noche");
 
             // Guardar al cajero en el conjunto de empleados del camión
             Set<Empleado> listaEmpleados = new HashSet<>();

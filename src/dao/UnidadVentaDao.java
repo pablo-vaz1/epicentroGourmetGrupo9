@@ -66,9 +66,11 @@ public class UnidadVentaDao {
 	public UnidadVenta traer(long idUnidadVenta) {
 		UnidadVenta objeto = null;
 	try {
-	iniciaOperacion();
-	objeto = (UnidadVenta) session.createQuery("from UnidadVenta")
-	.setParameter("idUnidadVenta", idUnidadVenta).uniqueResult();
+		iniciaOperacion();
+        objeto = (UnidadVenta) session.createQuery(
+                "from UnidadVenta u where u.idUnidadVenta = :idUnidadVenta")
+                .setParameter("idUnidadVenta", idUnidadVenta)
+                .uniqueResult();
 	} finally {
 	session.close();
 	}
