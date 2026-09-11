@@ -6,4 +6,4 @@ Pablo Vazquez/pablo-vaz1
 Chriatian Moreno/ChrisUnla
 
 Casos de uso:
-• Luciano Spinazzola: traer los Pedidos realizados en un rango de fechas, filtrados por tipo de UnidadVenta, con detalle de Ítems.
+• Luciano Spinazzola: traer los Pedidos realizados en un rango de fechas, filtrados por tipo de UnidadVenta y por Festival, con detalle de Ítems.
