@@ -8,16 +8,18 @@ public class Pedido {
 	private long idPedido;
 	private LocalDate fecha;
 	private UnidadVenta unidadVenta;
+	private Festival festival;
 	private Set<Item> items = new HashSet<Item>();
 
 	public Pedido() {
 	}
 
-	public Pedido(long idPedido, LocalDate fecha, UnidadVenta unidadVenta, Set<Item> items) {
+	public Pedido(long idPedido, LocalDate fecha, UnidadVenta unidadVenta, Festival festival, Set<Item> items) {
 		super();
 		this.idPedido = idPedido;
 		this.fecha = fecha;
 		this.unidadVenta = unidadVenta;
+		this.festival = festival;
 		this.items = items;
 	}
 
@@ -45,6 +47,14 @@ public class Pedido {
 		this.unidadVenta = unidadVenta;
 	}
 
+	public Festival getFestival() {
+		return festival;
+	}
+
+	public void setFestival(Festival festival) {
+		this.festival = festival;
+	}
+
 	public Set<Item> getItems() {
 		return items;
 	}
@@ -58,7 +68,8 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [idPedido=" + idPedido + ", fecha=" + fecha + ", unidadVenta=" + unidadVenta + "]";
+		return "Pedido [idPedido=" + idPedido + ", fecha=" + fecha + ", unidadVenta=" + unidadVenta + ", festival="
+				+ festival + "]";
 	}
 
 }

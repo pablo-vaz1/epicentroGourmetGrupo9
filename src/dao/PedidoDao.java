@@ -10,6 +10,8 @@ import org.hibernate.Transaction;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import datos.Festival;
 import datos.Item;
 import datos.Pedido;
 
@@ -88,28 +90,15 @@ public class PedidoDao {
 		return lista;
 	}
 
-	public Pedido traerClienteYPrestamos(long idPedido) throws HibernateException {
-		Pedido objeto = null;
-		try {
-			iniciaOperacion();
-			String hql = "from Pedido";
-			objeto = (Pedido) session.createQuery(hql).setParameter("idPedido", idPedido).uniqueResult();
-			Hibernate.initialize(objeto.getItems());
-		} finally {
-			session.close();
-		}
-		return objeto;
-	}
-
-	public List<Pedido> traerPorFechaYTipoUnidad(LocalDate fechaDesde, LocalDate fechaHasta, String tipoUnidad)
-			throws HibernateException {
+	public List<Pedido> traerPorFechaYTipoUnidad(LocalDate fechaDesde, LocalDate fechaHasta, String tipoUnidad,
+			Festival festival) throws HibernateException {
 		List<Pedido> lista = null;
 		try {
 			iniciaOperacion();
 			String hql = "select p from Pedido p join p.unidadVenta u where p.fecha between :fechaDesde and :fechaHasta and type(u) = "
-					+ tipoUnidad + " order by p.fecha asc";
+					+ tipoUnidad + " and p.festival = :festival order by p.fecha asc";
 			lista = session.createQuery(hql, Pedido.class).setParameter("fechaDesde", fechaDesde)
-					.setParameter("fechaHasta", fechaHasta).getResultList();
+					.setParameter("fechaHasta", fechaHasta).setParameter("festival", festival).getResultList();
 			for (Pedido p : lista) {
 				Hibernate.initialize(p.getItems());
 				for (Item i : p.getItems()) {
