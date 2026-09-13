@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping>
     <class name="datos.Pedido" table="pedido">
-
+        
         <!-- ID de Pedido -->
         <id column="idPedido" name="idPedido" type="long">
-            <generator class="identity" />
+        <generator class="identity" />
         </id>
-
+        
         <!-- Atributos comunes -->
         <property column="fecha" name="fecha" type="java.time.LocalDate" />
-
+        
         <!-- Relación Muchos a Uno con UnidadVenta (Clave foránea) -->
         <many-to-one name="unidadVenta" column="idUnidadVenta" class="datos.UnidadVenta" not-null="true" />
-
-        <!-- Relación Muchos a Uno con Festival (Clave foránea) -->
-        <many-to-one name="festival" column="idFestival" class="datos.Festival" not-null="true" />
-
+        
         <!-- Relación Unidireccional Uno a Muchos con Item -->
         <set name="items" table="item" lazy="true" cascade="all">
-            <key column="idPedido" />
+            <key column="idPedido" not-null="true" /> 
             <one-to-many class="datos.Item" />
         </set>
-
+        
     </class>
 </hibernate-mapping>

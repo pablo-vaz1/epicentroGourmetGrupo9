@@ -3,8 +3,8 @@
     <class name="datos.UnidadVenta" table="unidad_venta">
         
         <!-- ID de la clase padre -->
-        <id column="idUnidadVenta" name="idUnidadVenta" type="int">
-            <generator class="identity" />
+        <id column="idUnidadVenta" name="idUnidadVenta" type="long">
+        <generator class="identity" />
         </id>
         
         <!-- Atributos comunes de UnidadVenta -->

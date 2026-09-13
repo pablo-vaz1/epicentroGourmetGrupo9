@@ -2,8 +2,8 @@
 <hibernate-mapping>
     <class name="datos.Plato" table="plato">
         
-        <id column="idPlato" name="idPlato" type="int">
-            <generator class="identity" />
+        <id column="idPlato" name="idPlato">
+        <generator class="identity" />
         </id>
         
         <property column="nombre" name="nombre" type="string" />
