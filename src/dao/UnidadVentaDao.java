@@ -67,8 +67,8 @@ public class UnidadVentaDao {
 		UnidadVenta objeto = null;
 	try {
 	iniciaOperacion();
-	objeto = (UnidadVenta) session.createQuery("from UnidadVenta")
-	.setParameter("idUnidadVenta", idUnidadVenta).uniqueResult();
+	objeto = (UnidadVenta) session.createQuery("from UnidadVenta u where u.idUnidadVenta = :idUnidadVenta")
+	        .setParameter("idUnidadVenta", idUnidadVenta).uniqueResult();
 	} finally {
 	session.close();
 	}

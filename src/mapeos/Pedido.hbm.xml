@@ -15,7 +15,7 @@
         
         <!-- Relación Unidireccional Uno a Muchos con Item -->
         <set name="items" table="item" lazy="true" cascade="all">
-            <key column="idPedido" />
+            <key column="idPedido" not-null="true" /> 
             <one-to-many class="datos.Item" />
         </set>
         

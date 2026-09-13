@@ -72,21 +72,23 @@ public class PedidoABM {
 	            Plato plato = entrada.getKey();
 	            int cantidad = entrada.getValue();
 
-	            // idItem se genera automático, el constructor solo pide (cantidad, plato)
+	         
 	            Item nuevoItem = new Item(cantidad, plato);
-	            session.persist(nuevoItem);
 	            itemsPedido.add(nuevoItem);
+	            //session.persist(nuevoItem);
+	            //itemsPedido.add(nuevoItem);
 	        }
 	        Pedido nuevoPedido = new Pedido(LocalDate.now(),unidadVenta,itemsPedido);
-	        session.persist(nuevoPedido);
-	        String sql = "UPDATE item SET idPedido = :idPedido WHERE idPedido IS NULL";
-	        session.createNativeQuery(sql)
-	               .setParameter("idPedido", nuevoPedido.getIdPedido())
-	               .executeUpdate();
+	        //session.persist(nuevoPedido);
+	        //String sql = "UPDATE item SET idPedido = :idPedido WHERE idPedido IS NULL";
+	        //session.createNativeQuery(sql)
+	        //       .setParameter("idPedido", nuevoPedido.getIdPedido())
+	        //       .executeUpdate();
+	        session.save(nuevoPedido);
 	        
 	        tx.commit();
 	        
-	        // Acá ya tenés el ID real asignado automáticamente por tu BD
+	        
 	        idGenerado = nuevoPedido.getIdPedido(); 
 
 	    } catch (Exception e) {
@@ -97,7 +99,7 @@ public class PedidoABM {
 	    }
 	    return idGenerado;
 	}
-	public double cierreCaja(long idUnidadVenta) {
+	public double cierreCaja(long idUnidadVenta) {//agregarfecha
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Double totalVendido = 0.0;
 		try {
@@ -122,4 +124,17 @@ public class PedidoABM {
 		}
 		return totalVendido;
 	}
+	 public double calcularGananciasUnidadVenta(UnidadVenta unidadVenta, LocalDate fechaDesde, LocalDate fechaHasta) throws Exception {
+	        
+	        if (unidadVenta == null) {
+	            throw new Exception("no se encontro la unidad de venta");
+	        }
+	       
+	        if (fechaDesde.isAfter(fechaHasta)) {
+	            throw new Exception("verificar la concordancia de las fechas desde y hasta");
+	        }
+
+	        return dao.calcularGananciasPorUnidadYFechas(unidadVenta, fechaDesde, fechaHasta);
+	    }
+	
 }

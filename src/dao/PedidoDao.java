@@ -5,10 +5,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import datos.Pedido;
+import datos.UnidadVenta;
 
 public class PedidoDao {
 	private static Session session;
@@ -80,18 +82,40 @@ public class PedidoDao {
 	}
 	return lista;
 	}
-	public Pedido traerClienteYPrestamos(long idPedido) throws HibernateException {
-		Pedido objeto = null;
-		try {
-		iniciaOperacion();
-		String hql = "from Pedido";
-		objeto=(Pedido) session.createQuery(hql).setParameter("idPedido", idPedido).uniqueResult();
-		Hibernate.initialize(objeto.getItems());
-		}
-		finally {
-		session.close();
-		}
-		return objeto;
-		}
+	
+	 public double calcularGananciasPorUnidadYFechas(UnidadVenta unidadVenta, LocalDate fechaDesde, LocalDate fechaHasta) {
+	        Session session = HibernateUtil.getSessionFactory().openSession();
+	        Double totalGanancias = 0.0;
+	        
+	        try {
+	            
+	            String hql = "SELECT SUM(i.cantidad * (pl.precio - pl.costoProduccion)) " +
+	                         "FROM Pedido p " +
+	                         "JOIN p.items i " +
+	                         "JOIN i.plato pl " +
+	                         "WHERE p.unidadVenta = :unidadVenta " +
+	                         "AND p.fecha BETWEEN :fechaDesde AND :fechaHasta";
+	            
+	            var query = session.createQuery(hql, Double.class)
+	            .setParameter("unidadVenta", unidadVenta)
+	            .setParameter("fechaDesde", fechaDesde)
+	            .setParameter("fechaHasta", fechaHasta);
+	            
+	            totalGanancias = query.uniqueResult();
+	            
+	            if (totalGanancias == null) {
+	                totalGanancias = 0.0;
+	            }
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            session.close();
+	        }
+	        
+	        return totalGanancias;
+	    }
+	}
 
-}
+
+
