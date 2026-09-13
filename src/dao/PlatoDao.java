@@ -55,7 +55,7 @@ public class PlatoDao {
 	session.close();
 	}
 	}
-	public Plato traer(long idPlato) {
+	public Plato traer(int idPlato) {
 		Plato objeto = null;
 	try {
 	iniciaOperacion();

@@ -7,7 +7,7 @@ import datos.Plato;
 public class PlatoABM {
 	
 		PlatoDao dao = new PlatoDao();
-		public Plato traer(long idPlato) {
+		public Plato traer(int idPlato) {
 		return dao.traer(idPlato);
 		}
 		
@@ -19,7 +19,7 @@ public class PlatoABM {
 		
 		dao.actualizar(p);
 		}
-		public void modificar(long idPlato , String nombreN, float precioN, float costoProduccionN)throws Exception{
+		public void modificar(int idPlato , String nombreN, float precioN, float costoProduccionN)throws Exception{
 		    Plato PlatoParaModificar=dao.traer(idPlato);
 			if(PlatoParaModificar == null) {
 				throw new Exception("el plato no existe");
@@ -30,7 +30,7 @@ public class PlatoABM {
 			
 			dao.actualizar(PlatoParaModificar);
 		}
-		public void eliminar(long idPlato) throws Exception {
+		public void eliminar(int idPlato) throws Exception {
 		
 			
 		Plato p = dao.traer(idPlato);

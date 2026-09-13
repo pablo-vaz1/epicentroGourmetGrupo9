@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class Empleado {
-private long idEmpleado;
+private int idEmpleado;
 private int dni;
 private String nombre;
 private String apellido;
@@ -26,10 +26,10 @@ private long puestoDondeTrabaja;
 		this.sueldo = sueldo;
 		this.esEncargado = esEncargado;
 	 }
-	 public long getIdEmpleado() {
+	 public int getIdEmpleado() {
 		 return idEmpleado;
 	 }
-	 protected void setIdEmpleado(long idEmpleado) {
+	 protected void setIdEmpleado(int idEmpleado) {
 		 this.idEmpleado = idEmpleado;
 	 }
 	 public int getDni() {
