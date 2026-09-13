@@ -16,10 +16,10 @@ public class EmpleadoABM {
 	}
 	
 	public int agregarCajero(int dni, String nombre, String apellido, LocalDate fechaNacimiento,
-			LocalDate fechaIngreso, float sueldo, boolean esEncargado, int puestoDondeTrabaja,String turno){
+			LocalDate fechaIngreso, float sueldo, boolean esEncargado,String turno){
 	
 	
-	Cajero c = new Cajero(dni,nombre, apellido, fechaNacimiento,fechaIngreso,sueldo,esEncargado,puestoDondeTrabaja,turno);
+	Cajero c = new Cajero(dni,nombre, apellido, fechaNacimiento,fechaIngreso,sueldo,esEncargado,turno);
 	return dao.agregar(c);
 	}
 	public void modificar(Cajero c){
@@ -27,7 +27,7 @@ public class EmpleadoABM {
 	dao.actualizar(c);
 	}
 	public void modificarCajero(long idEmpleado,int dniN, String nombreN, String apellidoN, LocalDate fechaNacimientoN,
-			LocalDate fechaIngresoN, float sueldoN, boolean esEncargadoN, int puestoDondeTrabajaN,String turnoN)throws Exception{
+			LocalDate fechaIngresoN, float sueldoN, boolean esEncargadoN,String turnoN)throws Exception{
 	    Empleado empleadoParaModificar=dao.traer(idEmpleado);
 		if(empleadoParaModificar == null) {
 			throw new Exception("este empleado no existe");
@@ -45,7 +45,6 @@ public class EmpleadoABM {
 		    c.setFechaIngreso(fechaIngresoN);
 		    c.setSueldo(sueldoN);
 		    c.setEsEncargado(esEncargadoN);
-		    c.setPuestoDondeTrabaja(puestoDondeTrabajaN);
 		    c.setTurno(turnoN);
 		    
 			dao.actualizar(c);
@@ -55,11 +54,11 @@ public class EmpleadoABM {
 	}
 	
 	public int agregarCocinero(int dni, String nombre, String apellido, LocalDate fechaNacimiento,
-			LocalDate fechaIngreso, float sueldo, boolean esEncargado, int puestoDondeTrabaja, String especialidad,
+			LocalDate fechaIngreso, float sueldo, boolean esEncargado, String especialidad,
 			float plusSalarial){
 	
 	
-	Cocinero c = new Cocinero(dni,nombre, apellido, fechaNacimiento,fechaIngreso,sueldo,esEncargado,puestoDondeTrabaja, especialidad,
+	Cocinero c = new Cocinero(dni,nombre, apellido, fechaNacimiento,fechaIngreso,sueldo,esEncargado, especialidad,
 			 plusSalarial);
 	return dao.agregar(c);
 	}
@@ -68,7 +67,7 @@ public class EmpleadoABM {
 	dao.actualizar(c);
 	}
 	public void modificarCocinero(long idEmpleado,int dniN, String nombreN, String apellidoN, LocalDate fechaNacimientoN,
-			LocalDate fechaIngresoN, float sueldoN, boolean esEncargadoN, int puestoDondeTrabajaN,String especialidadN,
+			LocalDate fechaIngresoN, float sueldoN, boolean esEncargadoN,String especialidadN,
 			float plusSalarialN)throws Exception{
 	    Empleado EmpleadoParaModificar=dao.traer(idEmpleado);
 		if(EmpleadoParaModificar == null) {
@@ -87,7 +86,6 @@ public class EmpleadoABM {
 		    c.setFechaIngreso(fechaIngresoN);
 		    c.setSueldo(sueldoN);
 		    c.setEsEncargado(esEncargadoN);
-		    c.setPuestoDondeTrabaja(puestoDondeTrabajaN);
 		    c.setEspecialidad(especialidadN);
 		    c.setPlusSalarial(plusSalarialN);
 		    
@@ -110,6 +108,12 @@ public class EmpleadoABM {
 	}
 	public List<Empleado> traer() {
 	return dao.traer();
+	}
+	
+	public void asignarUnidadVenta(long idEmpleado, long idUnidadVenta) {
+		
+		dao.asignarUnidadVenta(idEmpleado, idUnidadVenta);
+		
 	}
 
 }

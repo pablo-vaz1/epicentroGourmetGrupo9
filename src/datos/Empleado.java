@@ -1,6 +1,7 @@
 package datos;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Empleado {
 private long idEmpleado;
@@ -11,11 +12,11 @@ private LocalDate fechaNacimiento;
 private LocalDate fechaIngreso;
 private float sueldo;
 private boolean esEncargado;
-private int puestoDondeTrabaja;
+private long puestoDondeTrabaja;
      public Empleado() {
      }
 	 public Empleado( int dni, String nombre, String apellido, LocalDate fechaNacimiento,
-			LocalDate fechaIngreso, float sueldo, boolean esEncargado, int puestoDondeTrabaja) {
+			LocalDate fechaIngreso, float sueldo, boolean esEncargado) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
@@ -24,7 +25,6 @@ private int puestoDondeTrabaja;
 		this.fechaIngreso = fechaIngreso;
 		this.sueldo = sueldo;
 		this.esEncargado = esEncargado;
-		this.puestoDondeTrabaja = puestoDondeTrabaja;
 	 }
 	 public long getIdEmpleado() {
 		 return idEmpleado;
@@ -74,12 +74,27 @@ private int puestoDondeTrabaja;
 	 public void setEsEncargado(boolean esEncargado) {
 		 this.esEncargado = esEncargado;
 	 }
-	 public int getPuestoDondeTrabaja() {
+	 public long getPuestoDondeTrabaja() {
 		 return puestoDondeTrabaja;
 	 }
-	 public void setPuestoDondeTrabaja(int puestoDondeTrabaja) {
+	 public void setPuestoDondeTrabaja(long puestoDondeTrabaja) {
 		 this.puestoDondeTrabaja = puestoDondeTrabaja;
 	 }
+	 
+	 
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+	        Empleado empleado = (Empleado) o;
+	        return idEmpleado == empleado.idEmpleado; // O compara por dni si idEmpleado es 0 antes de guardar
+	    }
+
+	  @Override
+	    public int hashCode() {
+	        return Objects.hash(idEmpleado);
+	    }
+	 
 	 @Override
 	 public String toString() {
 		return "Empleado [idEmpleado=" + idEmpleado + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido

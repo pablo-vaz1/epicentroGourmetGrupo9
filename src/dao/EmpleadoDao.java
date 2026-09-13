@@ -67,9 +67,10 @@ public class EmpleadoDao {
 	public Empleado traer(long idEmpleado) {
 		Empleado objeto = null;
 	try {
-	iniciaOperacion();
-	objeto = (Empleado) session.createQuery("from Empleado")
-	.setParameter("idEmpleado", idEmpleado).uniqueResult();
+		iniciaOperacion();
+        objeto = (Empleado) session.createQuery("from Empleado e where e.idEmpleado = :idEmpleado")
+                .setParameter("idEmpleado", idEmpleado)
+                .uniqueResult();
 	} finally {
 	session.close();
 	}
@@ -84,6 +85,23 @@ public class EmpleadoDao {
 	session.close();
 	}
 	return lista;
+	}
+	
+	public void asignarUnidadVenta(long idEmpleado, long idUnidadVenta) {
+	    try {
+	        iniciaOperacion();
+	        session.createNativeQuery("UPDATE empleado SET idUnidadVenta = :idUnidad WHERE idEmpleado = :idEmp")
+	               .setParameter("idUnidad", idUnidadVenta)
+	               .setParameter("idEmp", idEmpleado)
+	               .executeUpdate();
+	        tx.commit();
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	    } finally {
+	        if (session != null && session.isOpen()) {
+	            session.close();
+	        }
+	    }
 	}
 
 

@@ -21,7 +21,6 @@ public abstract class UnidadVenta {
 		this.empleados = empleados;
 	}
 
-
 	public long getIdUnidadVenta() {
 		return idUnidadVenta;
 	}
